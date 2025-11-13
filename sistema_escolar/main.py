@@ -1,8 +1,8 @@
 # main.py
 import sys
 import customtkinter as ctk
-from banco import (conectar_banco_alunos, conectar_banco_turmas, conectar_banco_professores, conectar_banco_aulas, conectar_banco_atividades, conectar_banco_diario)
-from telas import alunos, professores, turmas, aulas, atividades, relatorios_ia
+from banco import conectar_banco_alunos, conectar_banco_turmas, conectar_banco_professores, conectar_banco_aulas, conectar_banco_atividades, conectar_banco_diario
+from telas import alunos, professores, turmas, aulas, atividades, relatorios_ia, dashboard
 
 ctk.set_appearance_mode("light") # tema claro (tradicional)
 try:
@@ -21,7 +21,7 @@ def main():
 
     janela = ctk.CTk()
     janela.title("Sistema Acadêmico Integrado")
-    janela.geometry("1200x800")
+    janela.geometry("1300x850")
     janela.minsize(1000, 700)
 
     # Header (logo + title)
@@ -41,6 +41,9 @@ def main():
     tabview.pack(expand=True, fill="both", padx=12, pady=12)
 
     # Abas
+    tabview.add("Dashboard")
+    dashboard.criar_tela_dashboard(tabview.tab("Dashboard"))
+
     tabview.add("Alunos")
     alunos.criar_tela_alunos(tabview.tab("Alunos"))
 
