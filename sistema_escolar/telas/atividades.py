@@ -45,17 +45,17 @@ def criar_tela_atividades(frame):
         id_, titulo = tree.item(sel[0], "values")[0:2]
         if messagebox.askyesno("Confirmação", f"Excluir atividade '{titulo}'?"): excluir_atividade(id_); carregar_atividades(); limpar_campos(); messagebox.showinfo("Removido", "Atividade excluída.")
 
-    entry_titulo = ctk.CTkEntry(frame, placeholder_text="* Título...", width=520); entry_titulo.pack(pady=(8,6))
-    text_descricao = ctk.CTkTextbox(frame, width=520, height=120); text_descricao.pack(pady=(0,8))
-    menu_turma = ctk.CTkOptionMenu(frame, values=buscar_nome_turmas(), width=220); menu_turma.pack(pady=(0,8)); menu_turma.set("Selecione uma turma")
+    entry_titulo = ctk.CTkEntry(frame, placeholder_text="* Título...", width=360); entry_titulo.pack(pady=(8,6))
+    text_descricao = ctk.CTkTextbox(frame, width=360, height=120); text_descricao.pack(pady=(0,8))
+    entry_data_entrega = ctk.CTkEntry(frame, placeholder_text="Data entrega (YYYY-MM-DD) - opcional", width=360); entry_data_entrega.pack(pady=(0,8))
+    menu_turma = ctk.CTkOptionMenu(frame, values=buscar_nome_turmas(), width=360); menu_turma.pack(pady=(0,8)); menu_turma.set("Selecione uma turma")
     frame.bind("<Visibility>", lambda e: menu_turma.configure(values=buscar_nome_turmas()))
-    entry_data_entrega = ctk.CTkEntry(frame, placeholder_text="Data entrega (YYYY-MM-DD) - opcional", width=320); entry_data_entrega.pack(pady=(0,8))
-    combo_dificuldade = ctk.CTkOptionMenu(frame, values=["Alta", "Média", "Baixa"], width=220); combo_dificuldade.pack(pady=(0,8)); combo_dificuldade.set("Selecionar dificuldade")
+    combo_dificuldade = ctk.CTkOptionMenu(frame, values=["Alta", "Média", "Baixa"], width=360); combo_dificuldade.pack(pady=(0,8)); combo_dificuldade.set("Selecionar dificuldade")
 
-    ctk.CTkButton(frame, text="CADASTRAR", fg_color="#1f5aa6", text_color="white", width=320, command=inserir_atividade).pack(pady=(0,6))
-    ctk.CTkButton(frame, text="EDITAR", fg_color="#1f5aa6", text_color="white", width=320, command=editar_atividade).pack(pady=(0,6))
-    ctk.CTkButton(frame, text="EXCLUIR", fg_color="#c94a4a", text_color="white", width=320, command=excluir_atividade_tree).pack(pady=(0,6))
-    ctk.CTkButton(frame, text="LIMPAR", fg_color="#7a7a7a", text_color="white", width=320, command=limpar_campos).pack(pady=(0,6))
+    ctk.CTkButton(frame, text="CADASTRAR", fg_color="#1f5aa6", text_color="white", width=360, command=inserir_atividade).pack(pady=(0,6))
+    ctk.CTkButton(frame, text="EDITAR", fg_color="#1f5aa6", text_color="white", width=360, command=editar_atividade).pack(pady=(0,6))
+    ctk.CTkButton(frame, text="EXCLUIR", fg_color="#c94a4a", text_color="white", width=360, command=excluir_atividade_tree).pack(pady=(0,6))
+    ctk.CTkButton(frame, text="LIMPAR", fg_color="#7a7a7a", text_color="white", width=360, command=limpar_campos).pack(pady=(0,6))
 
     frame_tree = ctk.CTkFrame(frame, corner_radius=8); frame_tree.pack(side="bottom", expand=True, fill="both", padx=10, pady=10)
     cols = ("ID", "Título", "Descrição", "Criado em", "Entrega", "Dificuldade", "Turma")

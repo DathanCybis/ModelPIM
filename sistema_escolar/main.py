@@ -1,19 +1,12 @@
 # main.py
 import sys
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
-
 import customtkinter as ctk
-from banco import (
-    conectar_banco_alunos, conectar_banco_turmas,
-    conectar_banco_professores, conectar_banco_aulas,
-    conectar_banco_atividades, conectar_banco_diario
-)
-from telas import alunos, professores, turmas, aulas, atividades
+from banco import (conectar_banco_alunos, conectar_banco_turmas, conectar_banco_professores, conectar_banco_aulas, conectar_banco_atividades, conectar_banco_diario)
+from telas import alunos, professores, turmas, aulas, atividades, relatorios_ia
 
-ctk.set_appearance_mode("light")       # tema claro (tradicional)
+ctk.set_appearance_mode("light") # tema claro (tradicional)
 try:
-    ctk.set_default_color_theme("blue")  # tenta usar tema azul (se disponível)
+    ctk.set_default_color_theme("blue") # tenta usar tema azul (se disponível)
 except Exception:
     pass
 
@@ -62,6 +55,10 @@ def main():
 
     tabview.add("Atividades")
     atividades.criar_tela_atividades(tabview.tab("Atividades"))
+    
+    tabview.add("Relatórios e IA")
+    relatorios_ia.criar_tela_relatorios_ia(tabview.tab("Relatórios e IA"))
+
 
     janela.mainloop()
 

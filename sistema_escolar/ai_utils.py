@@ -1,50 +1,51 @@
-# ai_utils.py
+# ia.py
 from datetime import datetime, timedelta
+import random
 
-KEYWORDS_ALTA = {"difícil", "complexo", "projeto", "laboratório", "avançado", "pesquisa"}
-KEYWORDS_MEDIA = {"médio", "intermediário", "exercício", "tarefa"}
-KEYWORDS_BAIXA = {"fácil", "leitura", "resumo", "leves"}
-
-def normalize_text(text):
-    return (text or "").lower()
-
-def classificar_dificuldade(titulo, descricao):
-    txt = normalize_text(titulo + " " + (descricao or ""))
-    score = 0
-    for k in KEYWORDS_ALTA:
-        if k in txt:
-            score += 2
-    for k in KEYWORDS_MEDIA:
-        if k in txt:
-            score += 1
-    for k in KEYWORDS_BAIXA:
-        if k in txt:
-            score -= 1
-    if len(txt) > 500:
-        score += 1
-    elif len(txt) < 50:
-        score -= 1
-    if score >= 2:
-        return "Alta"
-    if score == 1:
-        return "Média"
-    return "Baixa"
-
-def recomendar_data_entrega(data_criacao_str, dificuldade):
-    if isinstance(data_criacao_str, str):
-        try:
-            dt = datetime.fromisoformat(data_criacao_str)
-        except Exception:
-            dt = datetime.today()
-    elif isinstance(data_criacao_str, datetime):
-        dt = data_criacao_str
+def classificar_atividade(titulo: str) -> str:
+    """Classifica uma atividade pelo título."""
+    titulo = titulo.lower()
+    if any(palavra in titulo for palavra in ["prova", "exame", "teste"]):
+        return "Alta dificuldade"
+    elif any(palavra in titulo for palavra in ["trabalho", "pesquisa", "relatório"]):
+        return "Média dificuldade"
+    elif any(palavra in titulo for palavra in ["exercício", "atividade", "tarefa"]):
+        return "Baixa dificuldade"
     else:
-        dt = datetime.today()
-    if dificuldade == "Alta":
-        dias = 2
-    elif dificuldade == "Média":
-        dias = 5
+        return "Dificuldade indefinida"
+
+def recomendar_data_entrega() -> str:
+    """Sugere a próxima data útil para entrega de uma atividade."""
+    hoje = datetime.now()
+    proxima = hoje + timedelta(days=1)
+    while proxima.weekday() >= 5:  # 5 = sábado, 6 = domingo
+        proxima += timedelta(days=1)
+    return proxima.strftime("%d/%m/%Y")
+
+def analisar_texto_aluno(texto: str) -> str:
+    """Analisa um texto simples e retorna um feedback simulado."""
+    texto = texto.lower()
+    if "não entendi" in texto or "difícil" in texto:
+        return "O aluno demonstrou dificuldade. Recomenda-se reforçar o conteúdo."
+    elif "gostei" in texto or "interessante" in texto:
+        return "O aluno mostrou engajamento positivo."
+    elif "fácil" in texto or "tranquilo" in texto:
+        return "O aluno entendeu bem o conteúdo."
     else:
-        dias = 8
-    recomendada = dt + timedelta(days=dias)
-    return recomendada.date().isoformat()
+        return random.choice([
+            "O aluno apresentou compreensão parcial.",
+            "Análise neutra — sem indícios claros de dificuldade.",
+            "Expressão neutra, sem emoção detectada."
+        ])
+
+def responder_pergunta(pergunta: str) -> str:
+    """Responde perguntas simples sobre aulas e relatórios."""
+    pergunta = pergunta.lower()
+    if "relatório" in pergunta:
+        return "Você pode gerar relatórios em PDF ou CSV com as informações de alunos e aulas."
+    elif "aula" in pergunta:
+        return "As aulas estão cadastradas com disciplina, professor, turma, horário e sala."
+    elif "data" in pergunta:
+        return f"A próxima data útil recomendada é {recomendar_data_entrega()}."
+    else:
+        return "Desculpe, ainda não sei responder isso. Estou aprendendo! 🤖"
