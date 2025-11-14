@@ -1,7 +1,6 @@
-# telas/alunos.py
 import customtkinter as ctk
 from tkinter import ttk, messagebox
-from banco import *
+from banco import listar_alunos, cadastrar_alunos, atualizar_alunos, buscar_alunos, excluir_alunos, buscar_nome_turmas
 from funcao import calcular_idade, verificar_idade
 
 def criar_tela_alunos(frame):

@@ -1,4 +1,3 @@
-# telas/dashboard_principal.py
 import customtkinter as ctk
 from datetime import datetime
 

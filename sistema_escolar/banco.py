@@ -1,4 +1,3 @@
-# banco.py
 import sqlite3
 DB = "sistema_escolar.db"
 
@@ -221,3 +220,14 @@ def buscar_diario(id_):
 def excluir_diario(id_):
     conn = sqlite3.connect(DB); cur = conn.cursor()
     cur.execute("DELETE FROM diario WHERE id=?", (id_,)); conn.commit(); conn.close()
+
+
+def conectar_bancos():
+    conectar_banco_alunos()
+    conectar_banco_turmas()
+    conectar_banco_professores()
+    conectar_banco_aulas()
+    conectar_banco_atividades()
+    conectar_banco_diario()
+
+    

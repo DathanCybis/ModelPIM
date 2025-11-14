@@ -1,4 +1,3 @@
-# ai_utils.py
 from datetime import datetime, timedelta
 import random
 

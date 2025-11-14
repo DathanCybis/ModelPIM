@@ -1,7 +1,6 @@
-# telas/relatorios_ia.py
 import customtkinter as ctk
 from tkinter import messagebox
-from banco import *
+from banco import listar_aulas, buscar_nome_professores, buscar_nome_turmas
 import io
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas

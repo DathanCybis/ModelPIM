@@ -1,4 +1,3 @@
-# funcao.py
 from datetime import datetime, date
 
 def calcular_idade(data_nasc_str):

@@ -1,4 +1,3 @@
-# telas/professores.py
 import customtkinter as ctk
 from tkinter import ttk, messagebox
 from banco import listar_professores, cadastrar_professor, atualizar_professor, excluir_professor, buscar_professor

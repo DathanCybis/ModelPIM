@@ -1,7 +1,6 @@
-# telas/atividades.py
 import customtkinter as ctk
 from tkinter import ttk, messagebox
-from banco import *
+from banco import listar_atividades, atualizar_atividade, excluir_atividade, cadastrar_atividade, buscar_nome_turmas
 from ia import classificar_dificuldade, recomendar_data_entrega
 from datetime import datetime
 

@@ -1,7 +1,6 @@
-# telas/aulas.py
 import customtkinter as ctk
 from tkinter import ttk, messagebox
-from banco import *
+from banco import listar_aulas, atualizar_aula, excluir_aula, cadastrar_aula, buscar_nome_turmas, buscar_nome_professores
 
 def criar_tela_aulas(frame):
     def carregar_dados_aulas():
